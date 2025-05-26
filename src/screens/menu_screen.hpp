@@ -55,7 +55,7 @@ private:
     }; 
 
     MenuRect bg_square;
-    int menu_nyt = MENU_MAIN;
+    int menu_now = MENU_MAIN;
     unsigned int selected_control_key = 0;
  
     PK2gui::TextInput playerNameEdit;

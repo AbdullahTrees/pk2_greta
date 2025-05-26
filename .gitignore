@@ -42,3 +42,6 @@ launcher/*.o
 autosaves/
 
 start.sh
+src/main.cpp
+.gitignore
+src/main.cpp
