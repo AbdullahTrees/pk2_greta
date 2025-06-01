@@ -3,6 +3,9 @@
 //Copyright (c) 2003 Janne Kivilahti
 //#########################
 #include "Piste.hpp"
+
+#include "screens/clay_ui.hpp"
+
 #include <SDL.h>
 #include <functional>
 #include <stdexcept>
@@ -137,6 +140,8 @@ void init(int width, int height, const char* name, const char* icon, int audio_b
 	PInput::InputSystem::instance().searchForInputDevices();
 
 	PSound::init(audio_buffer_size);
+
+	ClayUI::Init();
 
 	ready = true;
 
