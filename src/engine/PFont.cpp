@@ -18,7 +18,7 @@
 
 void PFont::initCharlist() {
 
-	const char* chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ" "###" "0123456789.!?:-.+=()/#\\_%🌜";
+	const char* chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ" "###" "0123456789.!?:-,+=()/#\\_%🌜";
 	this->initCharlist(chars);
 }
 
@@ -385,7 +385,7 @@ PFont::PFont(int img_source, int x, int y, int width, int height, int count) {
 	char_count = count;
 
 	this->get_image(x, y, img_source);
-	//this->initCharlist();
+	this->initCharlist();
 
 }
 
