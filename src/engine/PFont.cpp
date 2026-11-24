@@ -6,11 +6,13 @@
 
 #include "PDraw.hpp"
 #include "PLang.hpp"
+#include "PLog.hpp"
 #include "types.hpp"
 #include "PFilesystem.hpp"
 
 #include <cmath>
 #include <cstring>
+#include <filesystem>
 
 
 void PFont::initCharlist() {
@@ -91,12 +93,26 @@ int PFont::load(const PFile::File& file) {
 
 	i = param_file.Search_Id("image");
 
-	std::optional<PFile::File> imagePath = PFilesystem::FindVanillaAsset(param_file.Get_Text(i), PFilesystem::FONTS_DIR);
+	// The image next to the .txt first, so a program with its own copy of the fonts (the level
+	// editor) uses it. In the game both lookups end in the same directory. Zip entries have
+	// relative names and are skipped.
+	std::optional<PFile::File> imagePath;
+	std::filesystem::path txtPath = file.getFilesystemPath();
+	if (txtPath.is_absolute()){
+		std::filesystem::path sibling = txtPath.parent_path() / std::filesystem::u8path(param_file.Get_Text(i));
+		if (std::filesystem::exists(sibling))
+			imagePath = PFile::File(sibling);
+	}
+
+	if (!imagePath.has_value())
+		imagePath = PFilesystem::FindVanillaAsset(param_file.Get_Text(i), PFilesystem::FONTS_DIR);
 	if (!imagePath.has_value()){
 		//TODO Add exception here
 		return -1;
 	}
 		
+
+	PLog::Write(PLog::DEBUG, "PFont", "Font image %s", imagePath->c_str());
 
 	int temp_image = PDraw::image_load(*imagePath, true);
 	if (temp_image == -1) return -1;
