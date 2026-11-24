@@ -4,6 +4,7 @@
 //#########################
 #pragma once
 
+#include "gfx/ui_boxes.hpp"
 #include "screen.hpp"
 #include "widgets.hpp"
 
@@ -46,15 +47,7 @@ private:
     void drawMenuTextControls(const std::string& text, unsigned int key, int x, int y);
 
 
-    class MenuRect{
-    public:
-        int left = 0;
-        int right = 0;
-        int top = 0;
-        int bottom = 0;
-    }; 
-
-    MenuRect bg_square;
+    MenuBox bg_square;
     int menu_nyt = MENU_MAIN;
     unsigned int selected_control_key = 0;
  

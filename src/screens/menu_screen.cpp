@@ -36,83 +36,8 @@ void MenuScreen::Draw_BGSquare(int left, int top, int right, int bottom, u8 pvar
 	if (Episode)
 		return;
 
-	if (bg_square.left < left)
-		bg_square.left++;
-
-	if (bg_square.left > left)
-		bg_square.left--;
-
-	if (bg_square.right < right)
-		bg_square.right++;
-
-	if (bg_square.right > right)
-		bg_square.right--;
-
-	if (bg_square.top < top)
-		bg_square.top++;
-
-	if (bg_square.top > top)
-		bg_square.top--;
-
-	if (bg_square.bottom < bottom)
-		bg_square.bottom++;
-
-	if (bg_square.bottom > bottom)
-		bg_square.bottom--;
-
-	left = bg_square.left;
-	right = bg_square.right;
-	top	= bg_square.top;
-	bottom = bg_square.bottom;
-
-	left   += (int)(sin_table( degree*2)     / 2.0);
-	right  += (int)(cos_table( degree*2)     / 2.0);
-	top	   += (int)(sin_table((degree*2)+20) / 2.0);
-	bottom += (int)(cos_table((degree*2)+40) / 2.0);
-
-	//PDraw::screen_fill(left,top,right,bottom,38);
-
-	double mult_y = (bottom - top) / 19.0;
-	double mult_x = (right - left) / 19.0;
-	double dbl_y = top;
-	double dbl_x = left;
-	bool dark = true;
-	int vari = 0;
-
-	//Draw squares
-	for (int y=0;y<19;y++) {
-		dbl_x = left;
-
-		for (int x=0;x<19;x++) {
-			
-			vari = (x / 4) + (y / 3);
-			if (dark) vari /= 2;
-
-			PDraw::screen_fill(int(dbl_x),int(dbl_y),int(dbl_x+mult_x),int(dbl_y+mult_y),pvari+vari);
-			
-			dbl_x += mult_x;
-			dark = !dark;
-
-		}
-
-		dbl_y += mult_y;
-	}
-
-	//Draw borders
-	PDraw::screen_fill(left-1,top-1,right+1,top+2,0);
-	PDraw::screen_fill(left-1,top-1,left+2,bottom+1,0);
-	PDraw::screen_fill(left-1,bottom-2,right+1,bottom+1,0);
-	PDraw::screen_fill(right-2,top-1,right+1,bottom+1,0);
-
-	PDraw::screen_fill(left-1+1,top-1+1,right+1+1,top+2+1,0);
-	PDraw::screen_fill(left-1+1,top-1+1,left+2+1,bottom+1+1,0);
-	PDraw::screen_fill(left-1+1,bottom-2+1,right+1+1,bottom+1+1,0);
-	PDraw::screen_fill(right-2+1,top-1+1,right+1+1,bottom+1+1,0);
-
-	PDraw::screen_fill(left,top,right,top+1,153);
-	PDraw::screen_fill(left,top,left+1,bottom,144);
-	PDraw::screen_fill(left,bottom-1,right,bottom,138);
-	PDraw::screen_fill(right-1,top,right,bottom,138);
+	MenuBox_Slide(bg_square, left, top, right, bottom);
+	MenuBox_DrawWobbling(bg_square.left, bg_square.top, bg_square.right, bg_square.bottom, pvari, degree);
 }
 
 
