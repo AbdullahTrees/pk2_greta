@@ -31,13 +31,13 @@
 
 #include "keyboard_navigation.hpp"
 
-void MenuScreen::Draw_BGSquare(int left, int top, int right, int bottom, u8 pvari){
-	
-	if (Episode)
+void MenuScreen::Draw_BGSquare(int left, int top, int right, int bottom, u8 pvari) {
+	if (Episode) {
 		return;
+	}
 
-	MenuBox_Slide(bg_square, left, top, right, bottom);
-	MenuBox_DrawWobbling(bg_square.left, bg_square.top, bg_square.right, bg_square.bottom, pvari, degree);
+	this->bg_square.slideTowards(PK2gui::BoxRect{left, top, right, bottom});
+	PK2gui::drawMenuBoxWobbling(this->bg_square, pvari, degree);
 }
 
 

@@ -907,7 +907,7 @@ void GameClass::showInfo(const std::string &text)
 
 void GameClass::drawInfoText()
 {
-	InfoSign_Draw(fontti1, this->info_text, screen_width / 2, 60, this->info_timer, INFO_TIME);
+	PK2gui::drawInfoSign(fontti1, this->info_text, screen_width / 2, 60, this->info_timer, INFO_TIME);
 }
 
 void GameClass::setCamera(bool legacy_mode)

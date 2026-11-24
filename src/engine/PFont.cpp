@@ -97,15 +97,17 @@ int PFont::load(const PFile::File& file) {
 	// editor) uses it. In the game both lookups end in the same directory. Zip entries have
 	// relative names and are skipped.
 	std::optional<PFile::File> imagePath;
-	std::filesystem::path txtPath = file.getFilesystemPath();
-	if (txtPath.is_absolute()){
-		std::filesystem::path sibling = txtPath.parent_path() / std::filesystem::u8path(param_file.Get_Text(i));
-		if (std::filesystem::exists(sibling))
+	const std::filesystem::path txtPath = file.getFilesystemPath();
+	if (txtPath.is_absolute()) {
+		const std::filesystem::path sibling = txtPath.parent_path() / std::filesystem::u8path(param_file.Get_Text(i));
+		if (std::filesystem::exists(sibling)) {
 			imagePath = PFile::File(sibling);
+		}
 	}
 
-	if (!imagePath.has_value())
+	if (!imagePath.has_value()) {
 		imagePath = PFilesystem::FindVanillaAsset(param_file.Get_Text(i), PFilesystem::FONTS_DIR);
+	}
 	if (!imagePath.has_value()){
 		//TODO Add exception here
 		return -1;

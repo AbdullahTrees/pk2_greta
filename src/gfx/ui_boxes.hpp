@@ -7,37 +7,44 @@
 #include "engine/types.hpp"
 #include <string>
 
+namespace PK2gui {
+
 /**
- * The checkered box behind the game's menus. color_base is the first colour of a palette
- * band; the box shades within the band. 224 is the blue box most menus use, 67 the dark
- * red one of the load menu.
+ * The edges of a box on the screen.
  */
-struct MenuBox {
+class BoxRect {
+public:
 	int left = 0;
 	int top = 0;
 	int right = 0;
 	int bottom = 0;
+
+	// Moves each edge one pixel towards target, so the box slides between sizes.
+	void slideTowards(const BoxRect& target);
 };
 
-void MenuBox_Draw(int left, int top, int right, int bottom, u8 color_base);
+/**
+ * The checkered box behind the game's menus, shaded upwards from colorBase. The menus use
+ * 224, the last palette band, which each background image defines itself: menu.bmp makes
+ * it blue. 67 is the dark red box of the load menu.
+ */
+void drawMenuBox(const BoxRect& box, u8 colorBase);
 
 // As the menus draw it, with each edge wobbling by phase (the menus pass degree).
-void MenuBox_DrawWobbling(int left, int top, int right, int bottom, u8 color_base, int phase);
-
-// Moves each edge of box one pixel towards the target, so the box slides between sizes.
-void MenuBox_Slide(MenuBox& box, int left, int top, int right, int bottom);
-
+void drawMenuBoxWobbling(const BoxRect& box, u8 colorBase, int phase);
 
 /**
  * The box behind info sign texts: a light purple border around a dark purple fill.
  */
-void InfoBox_Draw(int left, int top, int right, int bottom);
+void drawInfoBox(const BoxRect& box);
 
 // A box sized to text with the text inside, its top left corner at x, y.
-void InfoBox_DrawText(int font, const std::string& text, int x, int y);
+void drawInfoBoxText(int font, const std::string& text, int x, int y);
 
 /**
- * An info sign as the game shows it: centred on center_x, it opens while timer counts down
- * from total_time, shows the text fading in, then closes as timer reaches 0.
+ * An info sign as the game shows it: centred on centerX, it opens while timer counts down
+ * from totalTime, shows the text fading in, then closes as timer reaches 0.
  */
-void InfoSign_Draw(int font, const std::string& text, int center_x, int top, int timer, int total_time);
+void drawInfoSign(int font, const std::string& text, int centerX, int top, int timer, int totalTime);
+
+}

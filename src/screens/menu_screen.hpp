@@ -47,7 +47,7 @@ private:
     void drawMenuTextControls(const std::string& text, unsigned int key, int x, int y);
 
 
-    MenuBox bg_square;
+    PK2gui::BoxRect bg_square;
     int menu_nyt = MENU_MAIN;
     unsigned int selected_control_key = 0;
  
