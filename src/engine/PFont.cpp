@@ -7,6 +7,7 @@
 #include "PDraw.hpp"
 #include "PLang.hpp"
 #include "PLog.hpp"
+#include "PString.hpp"
 #include "types.hpp"
 #include "PFilesystem.hpp"
 
@@ -99,7 +100,7 @@ int PFont::load(const PFile::File& file) {
 	std::optional<PFile::File> imagePath;
 	const std::filesystem::path txtPath = file.getFilesystemPath();
 	if (txtPath.is_absolute()) {
-		const std::filesystem::path sibling = txtPath.parent_path() / std::filesystem::u8path(param_file.Get_Text(i));
+		const std::filesystem::path sibling = txtPath.parent_path() / PString::utf8ToPath(param_file.Get_Text(i));
 		if (std::filesystem::exists(sibling)) {
 			imagePath = PFile::File(sibling);
 		}
