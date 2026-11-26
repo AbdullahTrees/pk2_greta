@@ -10,7 +10,7 @@
 
 #include "system.hpp"
 #include "gfx/text.hpp"
-#include "gfx/ui_boxes.hpp"
+#include "utils/ui/ui_boxes.hpp"
 #include "gfx/particles.hpp"
 #include "gfx/effect.hpp"
 #include "gfx/bg_particles.hpp"

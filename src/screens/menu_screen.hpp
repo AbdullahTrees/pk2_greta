@@ -4,7 +4,7 @@
 //#########################
 #pragma once
 
-#include "gfx/ui_boxes.hpp"
+#include "utils/ui/ui_boxes.hpp"
 #include "screen.hpp"
 #include "widgets.hpp"
 
