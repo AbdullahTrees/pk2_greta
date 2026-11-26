@@ -87,12 +87,12 @@ int drawShadowedText(const std::string& text, const TextFonts& fonts, int x, int
 
 }
 
-void drawFadingText(const std::string& text, int font, int x, int y, u32 start, u32 end, u32 time){
+void drawFadingText(const std::string& text, int font, int x, int y, u32 start, u32 end, u32 time, bool fadeIn){
 	int pros = 100;
 	if (time > start && time < end) {
 
-		if (time - start < 100)
-			pros = time - end;
+		if (fadeIn && time - start < 100)
+			pros = time - start;
 
 		if (end - time < 100)
 			pros = end - time;

@@ -21,8 +21,12 @@
 
 #include <stdexcept>
 
+/**
+ * The intro was timed around an old bug in the fading text: each line stayed hidden for its first
+ * 99 ticks, then appeared at full strength. This keeps that look now that the fade-in works.
+ */
 static void CreditsText_Draw(const std::string& text, int font, int x, int y, u32 start, u32 end, u32 time) {
-	PK2gui::drawFadingText(text, font, x, y, start, end, time);
+	PK2gui::drawFadingText(text, font, x, y, start + 99, end, time, false);
 }
 
 void IntroScreen::Draw(){

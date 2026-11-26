@@ -33,8 +33,9 @@ int drawWaveTextSlow(const char* text, const TextFonts& fonts, int x, int y, int
 // Returns the width drawn.
 int drawShadowedText(const std::string& text, const TextFonts& fonts, int x, int y);
 
-// Shown between start and end, fading out over its last 100 ticks.
-void drawFadingText(const std::string& text, int font, int x, int y, u32 start, u32 end, u32 time);
+// Shown while start < time < end, fading in over its first 100 ticks (unless fadeIn is false)
+// and out over its last 100.
+void drawFadingText(const std::string& text, int font, int x, int y, u32 start, u32 end, u32 time, bool fadeIn = true);
 
 void drawFadingTextCentered(const std::string& text, int font, int centerX, int y, u32 start, u32 end, u32 time);
 
