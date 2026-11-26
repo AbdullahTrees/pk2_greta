@@ -6,6 +6,7 @@
 
 #include "episode/episodeclass.hpp"
 #include "gfx/text.hpp"
+#include "utils/ui/text_styles.hpp"
 #include "gfx/touchscreen.hpp"
 #include "game/game.hpp"
 #include "language.hpp"
@@ -106,14 +107,14 @@ void EndingScreen::Draw_EndGame(){
 	Draw_EndGame_Image(360, 284, 5, 60, 2);
 
 	if (loppulaskuri > onnittelut_alku) {
-		CreditsText_Draw_Centered(tekstit->Get_Text(PK_txt.end_congratulations), fontti2, 380, onnittelut_alku, onnittelut_loppu, loppulaskuri);
-		CreditsText_Draw_Centered(tekstit->Get_Text(PK_txt.end_chickens_saved), fontti1, 402, onnittelut_alku+30, onnittelut_loppu+30, loppulaskuri);
+		PK2gui::drawFadingTextCentered(tekstit->Get_Text(PK_txt.end_congratulations), fontti2, 320, 380, onnittelut_alku, onnittelut_loppu, loppulaskuri);
+		PK2gui::drawFadingTextCentered(tekstit->Get_Text(PK_txt.end_chickens_saved), fontti1, 320, 402, onnittelut_alku+30, onnittelut_loppu+30, loppulaskuri);
 
 		/*CreditsText_Draw(tekstit->Get_Text(PK_txt.end_congratulations).c_str(), fontti2, 220, 380, onnittelut_alku, onnittelut_loppu, loppulaskuri);
 		CreditsText_Draw(tekstit->Get_Text(PK_txt.end_chickens_saved).c_str(), fontti1, 220, 402, onnittelut_alku+30, onnittelut_loppu+30, loppulaskuri);*/
 	}
 	if (loppulaskuri > the_end_alku) {
-		CreditsText_Draw_Centered(tekstit->Get_Text(PK_txt.end_the_end), fontti2, 190, the_end_alku, the_end_loppu, loppulaskuri);
+		PK2gui::drawFadingTextCentered(tekstit->Get_Text(PK_txt.end_the_end), fontti2, 320, 190, the_end_alku, the_end_loppu, loppulaskuri);
 
 		//CreditsText_Draw(tekstit->Get_Text(PK_txt.end_the_end).c_str(), fontti2, 280, 190, the_end_alku, the_end_loppu, loppulaskuri);
 	}

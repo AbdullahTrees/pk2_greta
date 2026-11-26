@@ -5,6 +5,7 @@
 #include "intro_screen.hpp"
 
 #include "gfx/text.hpp"
+#include "utils/ui/text_styles.hpp"
 #include "gfx/touchscreen.hpp"
 #include "game/game.hpp"
 #include "language.hpp"
@@ -19,6 +20,10 @@
 #include "engine/PLog.hpp"
 
 #include <stdexcept>
+
+static void CreditsText_Draw(const std::string& text, int font, int x, int y, u32 start, u32 end, u32 time) {
+	PK2gui::drawFadingText(text, font, x, y, start, end, time);
+}
 
 void IntroScreen::Draw(){
 
